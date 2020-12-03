@@ -1431,7 +1431,9 @@ static int wilc_wlan_power(struct wilc *wilc, int power)
 
 	gpio_reset = gpiod_get(wilc->dt_dev, "reset", GPIOD_ASIS);
 	if (IS_ERR(gpio_reset)) {
-		dev_warn(wilc->dev, "failed to get Reset GPIO\r\n");
+		dev_warn(wilc->dev,
+			 "failed to get Reset GPIO %ld, handled in hardware?\r\n"
+			 , PTR_ERR(gpio_reset));
 			return 0;
 	} else {
 		dev_info(wilc->dev, "succesfully got gpio_reset\r\n");
@@ -1439,7 +1441,11 @@ static int wilc_wlan_power(struct wilc *wilc, int power)
 
 	gpio_chip_en = gpiod_get(wilc->dt_dev, "chip_en", GPIOD_ASIS);
 	if (IS_ERR(gpio_chip_en)) {
-		dev_warn(wilc->dev, "failed to get chip en %ld", PTR_ERR(gpio_chip_en));
+		dev_warn(wilc->dev, 
+			"failed to get chip en %ld, handled in hardware?"
+			, PTR_ERR(gpio_chip_en));
+		gpiod_put(gpio_reset);
+		return 0;
 	} else {
 		dev_info(wilc->dev, "succesfully got gpio_chip_en\r\n");
 	}
