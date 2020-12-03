@@ -99,7 +99,7 @@ static ssize_t wilc_bt_dev_write(struct file *f, const char __user *buff,
 
 
 	if (len == 0) {
-		pr_debug("received invalid size <=0: %d\n", len);
+		pr_debug("received invalid size <=0: %ld\n", len);
 		return len;
 	}
 
@@ -108,12 +108,12 @@ static ssize_t wilc_bt_dev_write(struct file *f, const char __user *buff,
 	if (copy_from_user(usr_str, buff, len))
 		return -EIO;
 
-	pr_debug("received %s, len %d\n", usr_str, len);
+	pr_debug("received %s, len %ld\n", usr_str, len);
 	// call the appropriate command handler
 	cmd = (struct cmd_entry *)cmd_table;
 	while (cmd->wilc_handle_cmd != NULL) {
 		if (strncmp(cmd->str, usr_str, strlen(cmd->str)) == 0) {
-			pr_debug("param len: %d, string: %s\n",
+			pr_debug("param len: %ld, string: %s\n",
 				 len - strlen(cmd->str), usr_str);
 			cmd->wilc_handle_cmd(usr_str + strlen(cmd->str));
 			break;
@@ -549,7 +549,7 @@ static void wilc_bt_firmware_download(struct wilc *wilc)
 		pr_err("Can't allocate buffer for BT firmware download IO error\n");
 		goto fail_1;
 	}
-	pr_info("Downloading BT firmware size = %d ...\n", buffer_size);
+	pr_info("Downloading BT firmware size = %ld ...\n", buffer_size);
 
 	offset = 0;
 	addr = 0x400000;

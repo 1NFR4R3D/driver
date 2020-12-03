@@ -189,7 +189,7 @@ static void cfg_connect_result(enum conn_event conn_disconn_evt,
 		}
 
 		PRINT_INFO(vif->ndev, CFG80211_DBG,
-			   "Association request info elements length = %d\n",
+			   "Association request info elements length = %ld\n",
 			   conn_info->req_ies_len);
 		PRINT_INFO(vif->ndev, CFG80211_DBG,
 			   "Association response info elements length = %d\n",
@@ -317,7 +317,7 @@ static int scan(struct wiphy *wiphy, struct cfg80211_scan_request *request)
 
 	PRINT_INFO(vif->ndev, CFG80211_DBG, "Requested num of channel %d\n",
 		   request->n_channels);
-	PRINT_INFO(vif->ndev, CFG80211_DBG, "Scan Request IE len =  %d\n",
+	PRINT_INFO(vif->ndev, CFG80211_DBG, "Scan Request IE len =  %ld\n",
 		   request->ie_len);
 	PRINT_INFO(vif->ndev, CFG80211_DBG, "Number of SSIDs %d\n",
 		   request->n_ssids);
@@ -1844,7 +1844,7 @@ static int start_ap(struct wiphy *wiphy, struct net_device *dev,
 	PRINT_INFO(vif->ndev, HOSTAPD_DBG, "Starting ap\n");
 
 	PRINT_INFO(vif->ndev, CFG80211_DBG,
-		   "Interval= %d\n DTIM period= %d\n Head length= %d Tail length= %d channelnum[%d]\n",
+		   "Interval= %d\n DTIM period= %d\n Head length= %ld Tail length= %ld channelnum[%d]\n",
 		   settings->beacon_interval, settings->dtim_period,
 		   settings->beacon.head_len, settings->beacon.tail_len,
 		   channelnum);
