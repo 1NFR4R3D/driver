@@ -78,4 +78,5 @@ Note: RF version number format is xx.y, where xx: "Major" and y: "Minor".
 Changes in Major number requires re-tests and possibly re-certification.
 </ol>
 
-This fork has some additional changes, which makes it compile when included with NVIDIA L4T32.4.4
+1NFR4R3D - 
+This fork has some additional changes, which makes it compile when included with NVIDIA L4T 32.4.4
